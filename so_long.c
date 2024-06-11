@@ -6,42 +6,119 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/05/15 19:46:53 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:26:45 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*char	*ft_ber_map(int fd)
+static t_map map;
+
+char	*ft_strchr(const char *str, int c)
 {
-	return (0);
+	while (*str)
+	{
+		if (*str == c)
+			return ((char *)str);
+		str++;
+	}
+	if (*str == c)
+		return ((char *)str);
+	return (NULL);
+}
+
+void	get_map_data(int fd)
+{
+	char	*buffer;
+	int	i;
+
+	buffer = (char *)malloc(1024 * sizeof(char));
+	i = -1;
+	ft_printf("Getting map.width\n");
+	while (42)
+	{
+		i = read(fd, buffer, 1);
+		map.width += i;
+		if(ft_strchr(buffer, '\n') || i == 0)
+			break;
+	}
+	free(buffer);	
+	buffer = (char *)malloc(map.width * sizeof(char));
+	ft_printf("Getting get.hight\n");
+	i = -1;
+	while (i != 0)
+	{
+		i = read(fd, buffer, map.width);
+		map.hight += i;
+	}
+	free(buffer);
+	map.hight = (map.hight / map.width) + 1;
+	buffer = NULL;
+}
+
+char	*ft_ber_map_line(int fd)
+{
+	char	*buffer;
+	int	i;
+
+	buffer = (char *)malloc(map.width * sizeof(char));
+/*	while(read(fd, buffer, map.width))
+	{	
+		if(ft_strchr(buffer, '\n'))
+			break;
+	}*/
+	while (42)
+	{
+		i = read(fd, buffer, 1);
+		if(ft_strchr(buffer, '\n') || i == 0)
+			break;
+	}
+
+	buffer[map.width] = '\0';
+	return (buffer);
+}
+
+void	ft_ber_map(int fd)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("Going into get_map_data(fd)\n");
+	get_map_data(fd);
+	map.data = (char **)malloc(map.hight + 1 * sizeof(char *));
+	while (i < map.hight)
+	{
+		map.data[i] = ft_ber_map_line(fd);
+		printf("LINE: '%s'\n",  map.data[i]);
+		i++;
+	}
+	map.data[map.hight + 1] = NULL;
 }
 
 int	main(int argc, char **argv)
 {
 	int	fd;
-	char	*map;
 
-	if (argc == 1)
-		ft_printf("Map is not specied\n");
+	fd = open(argv[1], O_RDONLY);
+	ft_printf("Going into ft_ber_map\n");
+	if (fd && argc != 1)
+		ft_ber_map(fd);
 	else
+		ft_printf("Here will be function for manual map\n");//ft_manual_map(fd);
+	close(fd);
+	printf("Map width: %i\nMap hight: %i\n", map.width, map.hight);
+	ft_printf("Printing the map:\n");
+	for (int i = 0; i < map.hight; i++)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd)
-			map = ft_ber_map(fd);
-		else
-			map = ft_manual_map(fd);
+		ft_printf("%s\n", map.data[i]);
+		free(map.data[i]);
 	}
+	free(map.data);
 	return (0);
-}*/
+}
 
-#include "MLX42/MLX42.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <memory.h>
-#define WIDTH 128
-#define HEIGHT 128
+/*#define WIDTH 512
+#define HEIGHT 512
 
 static mlx_image_t	*sprite;
 static mlx_image_t	*texture;
@@ -77,9 +154,9 @@ void	put_img(void *param)
 
 	mlx = param;
 	// Display the image
-	for (int x = 0; (uint32_t)x < WIDTH; x++)
+	for (int x = 0; x < WIDTH; x++)
 	{	
-		for (int y = 0; (uint32_t)y < HEIGHT; y++)
+		for (int y = 0; y < HEIGHT; y++)
 		{	
 			if (mlx_image_to_window(mlx, texture, x, y) < 0)
         			ft_printf("texture error");
@@ -125,4 +202,4 @@ int32_t	main(void)
 	mlx_delete_texture(sprite_t);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-}
+}*/
