@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/11 15:26:45 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/22 19:31:48 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 
 static t_map map;
 
-char	*ft_strchr(const char *str, int c)
-{
-	while (*str)
-	{
-		if (*str == c)
-			return ((char *)str);
-		str++;
-	}
-	if (*str == c)
-		return ((char *)str);
-	return (NULL);
-}
-
-void	get_map_data(int fd)
+void	get_map_meta_data(int fd)
 {
 	char	*buffer;
 	int	i;
@@ -56,17 +43,13 @@ void	get_map_data(int fd)
 	buffer = NULL;
 }
 
-char	*ft_ber_map_line(int fd)
+//char	*ft_ber_map_line(int fd)
+/*void	ft_ber_map_line(int fd, char *buffer)
 {
-	char	*buffer;
+	//char	*buffer;
 	int	i;
 
-	buffer = (char *)malloc(map.width * sizeof(char));
-/*	while(read(fd, buffer, map.width))
-	{	
-		if(ft_strchr(buffer, '\n'))
-			break;
-	}*/
+	//buffer = (char *)malloc(map.width + 1 * sizeof(char));
 	while (42)
 	{
 		i = read(fd, buffer, 1);
@@ -75,8 +58,8 @@ char	*ft_ber_map_line(int fd)
 	}
 
 	buffer[map.width] = '\0';
-	return (buffer);
-}
+	//return (buffer);
+}*/
 
 void	ft_ber_map(int fd)
 {
@@ -84,11 +67,11 @@ void	ft_ber_map(int fd)
 
 	i = 0;
 	ft_printf("Going into get_map_data(fd)\n");
-	get_map_data(fd);
+	get_map_meta_data(fd);
 	map.data = (char **)malloc(map.hight + 1 * sizeof(char *));
 	while (i < map.hight)
 	{
-		map.data[i] = ft_ber_map_line(fd);
+		map.data[i] = get_next_line(fd);
 		printf("LINE: '%s'\n",  map.data[i]);
 		i++;
 	}
@@ -111,9 +94,9 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < map.hight; i++)
 	{
 		ft_printf("%s\n", map.data[i]);
-		free(map.data[i]);
+		//free(map.data[i]);
 	}
-	free(map.data);
+	//free(map.data);
 	return (0);
 }
 
