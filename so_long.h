@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/22 19:25:03 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/23 17:00:11 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct s_map
 {
 	int	width;
-	int	hight;
+	int	height;
 	char	*raw_data;
 	char	**data;
 	char	**START;
