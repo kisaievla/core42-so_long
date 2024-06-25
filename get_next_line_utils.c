@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:22:36 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/22 19:24:03 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:28:29 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strchr(const char *str, int ch)
 	return ((char *)str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+/*char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -64,6 +64,22 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[j] = '\0';
 	free(s1);
 	return (str);
+}*/
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	len_s1;
+	size_t	len_s2;
+	char	*dst;
+
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	dst = (char *)malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!dst)
+		return (NULL);
+	ft_strlcpy(dst, s1, len_s1 + 1);
+	ft_strlcpy(dst + len_s1, s2, len_s2 + 1);
+	return (dst);
 }
 
 char	*ft_strdup(const char *src)

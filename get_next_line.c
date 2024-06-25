@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:18:32 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/22 19:27:13 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:58:55 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*get_one_line(int fd, char *stash)
 		if (!stash)
 			stash = ft_strdup(buffer);
 		else
-			stash = ft_strjoin(stash, buffer);
+			stash = ft_strjoin_free(stash, buffer);
 		if (ft_strchr(stash, '\n') || bytes_read == 0)
 			break ;
 	}

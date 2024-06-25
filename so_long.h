@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/24 17:35:06 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:50:11 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *src, const char *str, size_t len);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	**ft_split(char const *s, char c);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_strjoin_free(char *buffer, char *buf);
 
 
 #endif

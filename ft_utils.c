@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:11:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/24 17:33:41 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/25 18:49:48 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,3 +74,31 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	return (src_len + dst_len);
 }
 
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	srcsize;
+
+	i = 0;
+	srcsize = ft_strlen((char *)src);
+	if (!size)
+		return (srcsize);
+	while (i < size - 1 && i < srcsize)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (size)
+		dst[i] = '\0';
+	return (srcsize);
+}
+
+char	*ft_strjoin_free(char *buffer, char *buf)
+{
+	char	*temp;
+
+	temp = ft_strjoin(buffer, buf);
+	if (buffer)
+		free(buffer);
+	return (temp);
+}
