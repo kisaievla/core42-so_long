@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/23 17:42:29 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:17:48 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,24 @@
 
 static t_map map;
 
-void	ft_ber_map(int fd)
+void	ft_raw_map(int fd)
 {
-	int	i;
+	char	*tmp;
+	char	*raw_data;
 
-	i = 0;
-	map.height = 6;
-	map.data = (char **)malloc((map.height + 1) * sizeof(char *));
-	while (i < map.height)
+	raw_data = ft_strdup("");
+	while (42)
 	{
-		map.data[i] = get_next_line(fd);
-		i++;
+		tmp = get_next_line(fd);
+		if (tmp == NULL)
+			break;
+		map.height++;
+		raw_data = ft_strjoin(tmp, raw_data);
+		write(1, "b", 1);
+		//free(tmp);
 	}
-	map.data[map.height] = NULL;
+	map.raw_data = ft_strdup(raw_data);
+	free(raw_data);
 }
 
 int	main(int argc, char **argv)
@@ -34,9 +39,12 @@ int	main(int argc, char **argv)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
-	ft_printf("Going into ft_ber_map\n");
 	if (fd && argc != 1)
-		ft_ber_map(fd);
+	{	
+		printf("Going into ft_ber_map\n");
+		ft_raw_map(fd);
+		map.data = ft_split(map.raw_data, '\n');
+	}
 	else
 		ft_printf("Here will be function for manual map\n");//ft_manual_map(fd);
 	close(fd);
@@ -45,7 +53,7 @@ int	main(int argc, char **argv)
 	int i = 0;
 	while (map.data[i] != NULL)
 	{
-		printf("%s", map.data[i]);
+		printf("%s\n", map.data[i]);
 		free(map.data[i]);
 		i++;
 	}

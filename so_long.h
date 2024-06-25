@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/23 17:00:11 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:35:06 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(const char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*get_next_line(int fd);
+int	ft_memcmp(const void *s1, const void *s2, size_t n);
+char	*ft_strnstr(const char *src, const char *str, size_t len);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
+char	**ft_split(char const *s, char c);
+
 
 #endif
