@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:22:36 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/25 17:28:29 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/06/26 12:04:22 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,35 +36,6 @@ char	*ft_strchr(const char *str, int ch)
 	}
 	return ((char *)str);
 }
-
-/*char	*ft_strjoin(char *s1, char *s2)
-{
-	size_t	i;
-	size_t	j;
-	char	*str;
-
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (0);
-	if (!s1 && !s2)
-		return (0);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\0')
-	{
-		str[j++] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i] != '\0')
-	{
-		str[j++] = s2[i];
-		i++;
-	}
-	str[j] = '\0';
-	free(s1);
-	return (str);
-}*/
 
 char	*ft_strjoin(char *s1, char *s2)
 {
