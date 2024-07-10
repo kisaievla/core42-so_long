@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/08 20:18:56 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/10 22:29:37 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,53 +53,6 @@ void	rectangular_walls(void)
 	
 	}
 }
-
-/*int	*stepper(int step, int pos_r, int pos_c)
-{
-	int	*rc;
-
-	rc = (int *)malloc(2 * sizeof(int));
-	if (step == 0)
-	{	
-		rc[0] = pos_r + -1;
-		rc[1] = pos_c + 0;
-	}
-	else if (step == 1)
-	{	
-		rc[0] = pos_r + 1;
-		rc[1] = pos_c + 0;
-	}
-	else if (step == 2)
-	{	
-		rc[0] = pos_r + 0;
-		rc[1] = pos_c + -1;
-	}
-	else if (step == 3)
-	{	
-		rc[0] = pos_r + 0;
-		rc[1] = pos_c + 1;
-	}
-	return (rc);
-}
-
-void	expore_neighbours(int r, int c, t_queue *q)
-{
-	int	i;
-	
-	i = 0;
-	while (i < 4)
-	{
-		rc = stepper(i, r, c);
-		if (rc[0] < 1 || rc[1] < 1)
-			continue ;
-		if (rc[0] >= map.height - 2 || rc[1] >= map.width - 2)
-			continue ;
-		if (map.data[rc[0]][rc[1]] == '1')
-			continue ;
-		enqueue(q, map.data[rc[0]][rc[1]]);
-	}	
-}*/
-
 
 void	find_start_end(void)
 {
@@ -155,11 +108,121 @@ void	find_items(void)
 	}
 }
 
+bool	**set_visited(int width, int height)
+{
+	bool	**array;
+	int	i;
+	int	j;
+
+	array = (bool **)malloc(height * (sizeof(bool *)));
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		array[i] = (bool *)malloc(width * sizeof(bool));
+		while (j < width)
+		{
+			array[i][j] = false;
+			j++;
+		}
+		i++;
+	}
+	return (array);
+}
+
+void	explore(int r, int c, bool **array, t_queue *rq,  t_queue *cq)
+{
+	int	rr;
+	int	cc;
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (i == 0)
+		{
+			rr = r - 1;
+			cc = c;
+		}
+		else if (i == 1)
+		{
+			rr = r + 1;
+			cc = c;
+		}
+		else if (i == 2)
+		{
+			rr = r;
+			cc = c - 1;
+		}
+		else if (i == 3)
+		{
+			rr = r;
+			cc = c + 1;
+		}
+		i++;
+		if (rr < 0 || cc < 0)
+			continue ;
+		if (rr >= map.height - 1 || cc >= map.width - 1)
+			continue ;
+		if (array[rr][cc] == true)
+			continue ;
+		if (map.data[rr][cc] == '1')
+			continue ;
+		enqueue(rq, rr);
+		enqueue(cq, cc);
+		array[rr][cc] = true;
+	}
+}
+
+int	find_path(void)
+{
+	t_queue	rq;
+	t_queue	cq;
+	bool	**visited;
+	int	r;
+	int	c;
+
+	
+	visited = set_visited(map.width, map.height);
+	q_init(&rq);
+	q_init(&cq);
+	enqueue(&rq, map.START_R);
+	enqueue(&cq, map.START_C);
+	visited[ map.START_R][ map.START_C] = true;
+	while (q_size(&rq) > 0)
+	{
+		
+		r = rq.head->value;
+		c = cq.head->value;
+		printf("[r-%i][c-%i] - %c\n", r, c, map.data[r][c]);
+		del_node(&rq, rq.head);
+		del_node(&cq, cq.head);
+	
+		if (map.data[r][c] == 'E')
+		{
+			del_list(&rq);
+			del_list(&cq);
+			free(visited);
+			return (1);
+		}
+		explore(r, c, visited, &rq, &cq);
+
+	}
+	del_list(&rq);
+	del_list(&cq);
+	free(visited);
+	return (-1);	
+}
+
 void	map_validator(void)
 {
 	rectangular_walls();
 	find_start_end();
 	find_items();
+	if (find_path() == -1)
+		ft_error("Error\nNo path found", &map);	
 	
 }
 

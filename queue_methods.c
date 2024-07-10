@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:24:10 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/08 19:56:32 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:32:00 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ void	enqueue(t_queue *q, char value)
 	else
 		q->tail->next = node;
 	q->tail = node;
+}
+
+int	q_size(t_queue *q)
+{
+	int	i;
+
+	i = 0;
+	q->current = q->head;
+	while (q->current != NULL)
+	{
+		q->current = q->current->next;
+		i++;
+	}
+	q->current = NULL;
+	return (i);
 }
 
 void	del_list(t_queue *q)

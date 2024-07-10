@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/08 19:24:20 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:58:39 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 
 typedef	struct s_node
 {
-	char		value;
+	int		value;
 	struct s_node	*next;
-	bool		visited;
 }	t_node;
 
 typedef struct s_queue
@@ -73,6 +72,8 @@ void	enqueue(t_queue *q, char value);
 void	q_init(t_queue *q);
 void	del_list(t_queue *q);
 void	del_node(t_queue *q, t_node *node);
+int	q_size(t_queue *q);
+
 
 
 
