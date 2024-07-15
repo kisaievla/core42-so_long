@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/14 20:45:38 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:18:28 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void	put_img(void *param)
 		y = 0;
 		while (j < map->width)
 		{
-			printf("map.data[%i][%i] = '%c'\n", i, j, map->data[i][j]);
 			if (i < map->height && j < map->width && map->data[i][j] == '1')
 			{
 				if (mlx_image_to_window(mlx, map->mlx_assets->wall, y, x) < 0)
@@ -152,12 +151,19 @@ void	put_img(void *param)
 			else if (i < map->height && j < map->width && map->data[i][j] == '0')
 			{
 				if (mlx_image_to_window(mlx, map->mlx_assets->floor, y, x) < 0)
-        				ft_printf("texture error");
+        				ft_printf("floor error");
+			}
+			else if (i < map->height && j < map->width && map->data[i][j] == 'C')
+			{
+				if (mlx_image_to_window(mlx, map->mlx_assets->floor, y, x) < 0)
+        				ft_printf("floor error");
+				if (mlx_image_to_window(mlx, map->mlx_assets->coll, y, x) < 0)
+        				ft_printf("collect error");
 			}
 			else
 			{
-				if (mlx_image_to_window(mlx, map->mlx_assets->coll, y, x) < 0)
-        				ft_printf("texture error");
+				if (mlx_image_to_window(mlx, map->mlx_assets->floor, y, x) < 0)
+        				ft_printf("floor error");	
 			}
 			y += 50;
 			j++;
@@ -167,10 +173,6 @@ void	put_img(void *param)
 	}
 	if (mlx_image_to_window(mlx, map->mlx_assets->sprite, map->START_C * 50, map->START_R * 50) < 0)
         	ft_printf("sprite error");
-	if (mlx_image_to_window(mlx, map->mlx_assets->exit, map->FINISH_C * 50, map->FINISH_R * 50) < 0)
-        	ft_printf("sprite error");
-
-
 }	
 
 
@@ -178,22 +180,87 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_map	*map;
 	mlx_t	*mlx;
+	int	inst;
 
 	map = param;
 	mlx = map->mlx;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-	{	
-		mlx_delete_image(mlx, map->mlx_assets->sprite);
-		mlx_close_window(mlx);
+	inst = 0;
+	printf("%i", map->mlx_assets->sprite->instances[0].z);
+	mlx_set_instance_depth(&map->mlx_assets->sprite->instances[0], 209);
+	if (map->COLLECTIBLE == 0)
+	{
+		if (mlx_image_to_window(mlx, map->mlx_assets->exit, map->FINISH_C * 50, map->FINISH_R * 50) < 0)
+        	ft_printf("exit error");
 	}
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE) || map->data[map->START_R][map->START_C] == 'E')
+		mlx_close_window(mlx);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		map->mlx_assets->sprite->instances[0].y -= map->mlx_assets->sprite->height;
+	{	
+		if (map->data[map->START_R - 1][map->START_C] != '1')
+		{	
+			map->mlx_assets->sprite->instances[0].y -= map->mlx_assets->sprite->height;
+			map->START_R--;
+			if (map->data[map->START_R][map->START_C] == 'C')
+			{	
+				map->COLLECTIBLE--;
+				inst = mlx_image_to_window(mlx, map->mlx_assets->floor, map->mlx_assets->sprite->instances[0].x, map->mlx_assets->sprite->instances[0].y);
+				if (inst < 0)
+        				ft_printf("floor error");
+				mlx_set_instance_depth(&map->mlx_assets->floor->instances[inst], 208);	
+			}
+		}
+	}
 	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-		map->mlx_assets->sprite->instances[0].y += map->mlx_assets->sprite->height;
+	{	
+		if (map->data[map->START_R + 1][map->START_C] != '1')
+		{
+			map->mlx_assets->sprite->instances[0].y += map->mlx_assets->sprite->height;
+			map->START_R++;
+			if (map->data[map->START_R][map->START_C] == 'C')
+			{	
+				map->COLLECTIBLE--;
+				inst = mlx_image_to_window(mlx, map->mlx_assets->floor, map->mlx_assets->sprite->instances[0].x, map->mlx_assets->sprite->instances[0].y);
+				if (inst < 0)
+        				ft_printf("floor error");
+				mlx_set_instance_depth(&map->mlx_assets->floor->instances[inst], 208);	
+			}
+
+		}
+	}
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		map->mlx_assets->sprite->instances[0].x -= map->mlx_assets->sprite->width;
+	{	
+		if (map->data[map->START_R][map->START_C - 1] != '1')
+		{	
+			map->mlx_assets->sprite->instances[0].x -= map->mlx_assets->sprite->width;
+			map->START_C--;
+			if (map->data[map->START_R][map->START_C] == 'C')
+			{	
+				map->COLLECTIBLE--;
+				inst = mlx_image_to_window(mlx, map->mlx_assets->floor, map->mlx_assets->sprite->instances[0].x, map->mlx_assets->sprite->instances[0].y);
+				if (inst < 0)
+        				ft_printf("floor error");
+				mlx_set_instance_depth(&map->mlx_assets->floor->instances[inst], 208);	
+			}
+
+		}
+	}
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		map->mlx_assets->sprite->instances[0].x += map->mlx_assets->sprite->width;
+	{	
+		if (map->data[map->START_R][map->START_C + 1] != '1')
+		{	
+			map->mlx_assets->sprite->instances[0].x += map->mlx_assets->sprite->width;
+			map->START_C++;
+			if (map->data[map->START_R][map->START_C] == 'C')
+			{	
+				map->COLLECTIBLE--;
+				inst = mlx_image_to_window(mlx, map->mlx_assets->floor, map->mlx_assets->sprite->instances[0].x, map->mlx_assets->sprite->instances[0].y);
+				if (inst < 0)
+        				ft_printf("floor error");
+				mlx_set_instance_depth(&map->mlx_assets->floor->instances[inst], 208);	
+			}
+		}
+	}
+	printf("map.data[%i][%i] = %c\n", map->START_R, map->START_C, map->data[map->START_R][map->START_C]);
 }
 
 int	main(int argc, char **argv)
@@ -218,12 +285,16 @@ int	main(int argc, char **argv)
 	put_img(&map);
 	mlx_key_hook(map.mlx, &my_keyhook, &map);
 	mlx_loop(map.mlx);
-	/*mlx_delete_image(map.mlx, map.mlx_assets->texture);
+	mlx_delete_image(map.mlx, map.mlx_assets->floor);
 	mlx_delete_image(map.mlx, map.mlx_assets->sprite);
 	mlx_delete_image(map.mlx, map.mlx_assets->wall);
-	mlx_delete_texture(map.mlx_assets->texture_t);
-	mlx_delete_texture(map.mlx_assets->sprite_t);
-	mlx_delete_texture(map.mlx_assets->wall_t);*/
+	mlx_delete_image(map.mlx, map.mlx_assets->coll);
+	mlx_delete_image(map.mlx, map.mlx_assets->exit);
+	mlx_delete_xpm42(map.mlx_assets->floor_t);
+	mlx_delete_xpm42(map.mlx_assets->coll_t);
+	mlx_delete_xpm42(map.mlx_assets->exit_t);
+	mlx_delete_xpm42(map.mlx_assets->sprite_t);
+	mlx_delete_xpm42(map.mlx_assets->wall_t);
 	mlx_terminate(map.mlx);
 	testing(&map);
 	return (0);
