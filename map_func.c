@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:20:45 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/15 20:19:37 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:53:39 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void	map_init(t_map *map)
 	map->FINISH_C = 0;
 	map->COLLECTIBLE = 0;
 	map->WALLS = 0;
+	map->steps = 0;
 }

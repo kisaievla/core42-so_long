@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:00:05 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/22 18:47:40 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:11:58 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static int	ft_printf_help(char *s, va_list argptr)
 		len += ft_printf_helper_c(va_arg(argptr, int));
 	else if (*s == 's')
 		len += ft_printf_helper_s(va_arg(argptr, char *));
+	else if (*s == 'd' || *s == 'i')
+		len += ft_printf_helper_d(va_arg(argptr, int));
 	return(len);
 }
 

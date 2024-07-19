@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/14 20:02:17 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:23:44 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_map
 	int	FINISH_C;
 	int	COLLECTIBLE;
 	int	WALLS;
+	int	steps;
 	t_mlx_assets	*mlx_assets;
 	mlx_t	*mlx;
 }	t_map;
@@ -104,6 +105,20 @@ void	rectangular_walls(t_map *map);
 void	find_start_end(t_map *map);
 void	find_items(t_map *map);
 void	map_init(t_map *map);
+
+int	ft_count_int(int value);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int	ft_printf_helper_d(int d);
+// so_long_utils.c
+void	so_long_kill(t_map *map);
+//so_long_moves.c
+void	collected(t_map *map, mlx_t *mlx);
+void	move_sprite_left(t_map *map, mlx_t *mlx, int *step);
+void	move_sprite_right(t_map *map, mlx_t *mlx, int *step);
+void	move_sprite_up(t_map *map, mlx_t *mlx, int *step);
+void	move_sprite_down(t_map *map, mlx_t *mlx, int *step);
+
 
 
 #endif
