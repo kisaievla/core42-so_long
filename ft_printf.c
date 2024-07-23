@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:00:05 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/19 17:11:58 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/20 13:52:55 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_printf_helper_s(char *s)
 	len = 0;
 	if (s)
 	{
-		while(*s)
+		while (*s)
 		{
 			write(1, s, 1);
 			s++;
@@ -52,13 +52,13 @@ static int	ft_printf_help(char *s, va_list argptr)
 		len += ft_printf_helper_s(va_arg(argptr, char *));
 	else if (*s == 'd' || *s == 'i')
 		len += ft_printf_helper_d(va_arg(argptr, int));
-	return(len);
+	return (len);
 }
 
 int	ft_printf(char *s, ...)
 {
 	va_list	args;
-	int	len;
+	int		len;
 
 	len = 0;
 	va_start(args, s);

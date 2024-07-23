@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 19:18:32 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/25 18:58:55 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/20 13:54:06 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*get_one_line(int fd, char *stash)
 {
 	char	*buffer;
-	int	bytes_read;
+	int		bytes_read;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while (42)
@@ -45,7 +45,7 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*temp;
 	char		*line;
-	int		len;
+	int			len;
 
 	if (fd < 0 || fd > FD_SETSIZE)
 	{

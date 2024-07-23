@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/19 17:23:44 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:56:25 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,21 @@ typedef struct s_mlx_assets
 
 typedef struct s_map
 {
-	int	width;
-	int	height;
-	char	*raw_data;
-	char	**data;
-	int	START_R;
-	int	START_C;
-	int	FINISH_R;
-	int	FINISH_C;
-	int	COLLECTIBLE;
-	int	WALLS;
-	int	steps;
+	int				width;
+	int				height;
+	char			*raw_data;
+	char			**data;
+	int				START_R;
+	int				START_C;
+	int				FINISH_R;
+	int				FINISH_C;
+	int				COLLECTIBLE;
+	int				WALLS;
+	int				steps;
+	t_queue			rq;
+	t_queue			cq;
 	t_mlx_assets	*mlx_assets;
-	mlx_t	*mlx;
+	mlx_t			*mlx;
 }	t_map;
 
 int	ft_printf(char *s, ...);
@@ -93,23 +95,27 @@ void	q_init(t_queue *q);
 void	del_list(t_queue *q);
 void	del_node(t_queue *q, t_node *node);
 int	q_size(t_queue *q);
-
-void	map_init(t_map *map);
-bool	**set_visited(int width, int height);
-void	free_visited(bool **array, int height);
-void	explore(int r, int c, bool **array, t_queue *rq,  t_queue *cq, t_map *map);
-int	find_path(t_map *map);
-void	map_validator(t_map *map);
+//map_func.c
 void	ft_read_map(int fd, t_map *map);
 void	rectangular_walls(t_map *map);
 void	find_start_end(t_map *map);
 void	find_items(t_map *map);
 void	map_init(t_map *map);
+//bfs_utils.c
+void	kill_find_path(t_queue *rq, t_queue *cq, t_map *map, bool **a);
+bool	**set_visited(int width, int height);
+void	free_visited(bool **array, int height);
+//bfs.c
+void	explore(int r, int c, bool **a, t_map *map);
+int		find_path(t_map *map);
+void	map_validator(t_map *map);
 
-int	ft_count_int(int value);
+
+
+int		ft_count_int(int value);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
-int	ft_printf_helper_d(int d);
+int		ft_printf_helper_d(int d);
 // so_long_utils.c
 void	so_long_kill(t_map *map);
 //so_long_moves.c
