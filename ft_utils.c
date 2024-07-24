@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:11:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/27 13:13:27 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:41:00 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,23 +101,4 @@ char	*ft_strjoin_free(char *buffer, char *buf)
 	if (buffer)
 		free(buffer);
 	return (temp);
-}
-
-void	ft_error(char *str, t_map *map)
-{
-	int	i;
-
-	if (map != NULL)
-	{
-		i = 0;
-		while (map->data[i] != NULL)
-		{
-			free(map->data[i]);
-			i++;
-		}
-		free(map->data);
-		free(map->raw_data);
-	}
-	ft_printf(str);
-	exit(1);
 }

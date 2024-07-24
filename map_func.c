@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:20:45 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/23 18:14:08 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:39:07 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,19 @@ void	find_start_end(t_map *map)
 		{
 			if (map->data[i][j] == 'P')
 			{
-				map->START_R = i;
-				map->START_C = j;
+				map->start_r = i;
+				map->start_c = j;
 			}
 			else if (map->data[i][j] == 'E')
 			{
-				map->FINISH_R = i;
-				map->FINISH_C = j;
+				map->finish_r = i;
+				map->finish_c = j;
 			}
 			j++;
 		}
 		i++;
 	}
-	if (map->START_R == 0 || map->FINISH_R == 0)
+	if (map->start_r == 0 || map->finish_r == 0)
 		ft_error("Error\nThere is no Start or Exit postion found\n", map);
 }
 
@@ -92,14 +92,14 @@ void	find_items(t_map *map)
 		while (j < map->width - 1)
 		{
 			if (map->data[i][j] == 'C')
-				map->COLLECTIBLE++;
+				map->collectible++;
 			else if (map->data[i][j] == '1')
-				map->WALLS++;
+				map->walls++;
 			else if (map->data[i][j] == 'P'
-				&& (i != map->START_R || j != map->START_C))
+				&& (i != map->start_r || j != map->start_c))
 				ft_error("Error\nDuplicate Start postion found\n", map);
 			else if (map->data[i][j] == 'E'
-				&& (i != map->FINISH_R || j != map->FINISH_C))
+				&& (i != map->finish_r || j != map->finish_c))
 				ft_error("Error\nDuplicate Exit postion found\n", map);
 			j++;
 		}
@@ -113,13 +113,11 @@ void	map_init(t_map *map)
 	map->height = 0;
 	map->raw_data = NULL;
 	map->data = NULL;
-	map->START_R = 0;
-	map->START_C = 0;
-	map->FINISH_R = 0;
-	map->FINISH_C = 0;
-	map->COLLECTIBLE = 0;
-	map->WALLS = 0;
+	map->start_r = 0;
+	map->start_c = 0;
+	map->finish_r = 0;
+	map->finish_c = 0;
+	map->collectible = 0;
+	map->walls = 0;
 	map->steps = 0;
-	// map->rq = NULL;
-	// map->cq = NULL;
 }

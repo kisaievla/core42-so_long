@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue_methods.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 16:24:10 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/10 21:32:00 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:08:01 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	q_init(t_queue *q)
 	q->tail = NULL;
 	q->current = NULL;
 }
-
 
 void	enqueue(t_queue *q, char value)
 {

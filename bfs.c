@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_func2.c                                        :+:      :+:    :+:   */
+/*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:23:39 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/23 18:52:09 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:35:47 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	find_path(t_map *map)
 	visited = set_visited(map->width, map->height);
 	q_init(&map->rq);
 	q_init(&map->cq);
-	enqueue(&map->rq, map->START_R);
-	enqueue(&map->cq, map->START_C);
-	visited[map->START_R][map->START_C] = true;
+	enqueue(&map->rq, map->start_r);
+	enqueue(&map->cq, map->start_c);
+	visited[map->start_r][map->start_c] = true;
 	while (q_size(&map->rq) > 0)
 	{
 		r = map->rq.head->value;
