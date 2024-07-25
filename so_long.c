@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/25 13:47:22 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:09:32 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,6 @@ int	main(int argc, char **argv)
 	ft_read_map(fd, &map);
 	map_validator(&map);
 	close(fd);
-	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	map.mlx = mlx_init(map.width * 50, map.height * 50, "MLX42", true);
 	if (!map.mlx)
 		ft_error("MLX init error\n", &map);

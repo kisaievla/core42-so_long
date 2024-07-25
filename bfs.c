@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:23:39 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/24 19:35:47 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:51:42 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	explore(int r, int c, bool **a, t_map *map)
 
 	i = 0;
 	rc = (int *)malloc(3 * sizeof(int));
+	if (!rc)
+		ft_error("Explore error\n", map);
 	while (i < 4)
 	{
 		set_direction(i, r, c, &rc);
