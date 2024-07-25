@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/24 19:56:17 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:47:22 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	load_textures(void *param)
 	map = param;
 	map->mlx_assets->sprite_t = mlx_load_xpm42("./textures/sprite.xpm42");
 	if (!map->mlx_assets->sprite_t)
-		ft_printf("sprite didn't load");
+		ft_error("sprite didn't load", map);
 	map->mlx_assets->floor_t = mlx_load_xpm42("./textures/floor.xpm42");
 	if (!map->mlx_assets->floor_t)
-		ft_printf("floor didn't load");
+		ft_error("floor didn't load", map);
 	map->mlx_assets->wall_t = mlx_load_xpm42("./textures/wall.xpm42");
 	if (!map->mlx_assets->wall_t)
-		ft_printf("wall didn't load");
+		ft_error("wall didn't load\n", map);
 	map->mlx_assets->coll_t = mlx_load_xpm42("./textures/collect.xpm42");
 	if (!map->mlx_assets->coll_t)
-		ft_printf("sprite didn't load");
+		ft_error("sprite didn't load\n", map);
 	map->mlx_assets->exit_t = mlx_load_xpm42("./textures/exit.xpm42");
 	if (!map->mlx_assets->exit_t)
-		ft_printf("sprite didn't load");
+		ft_error("sprite didn't load\n", map);
 }
 
 void	make_image(void *param)
@@ -44,23 +44,23 @@ void	make_image(void *param)
 	map->mlx_assets->sprite = mlx_texture_to_image(mlx,
 			&map->mlx_assets->sprite_t->texture);
 	if (!map->mlx_assets->sprite)
-		ft_printf("sprite error");
+		ft_error("sprite error\n", map);
 	map->mlx_assets->floor = mlx_texture_to_image(mlx,
 			&map->mlx_assets->floor_t->texture);
 	if (!map->mlx_assets->floor)
-		ft_printf("texture error");
+		ft_error("texture error\n", map);
 	map->mlx_assets->wall = mlx_texture_to_image(mlx,
 			&map->mlx_assets->wall_t->texture);
 	if (!map->mlx_assets->wall)
-		ft_printf("texture error");
+		ft_error("texture error\n", map);
 	map->mlx_assets->coll = mlx_texture_to_image(mlx,
 			&map->mlx_assets->coll_t->texture);
 	if (!map->mlx_assets->coll)
-		ft_printf("texture error");
+		ft_error("texture error\n", map);
 	map->mlx_assets->exit = mlx_texture_to_image(mlx,
 			&map->mlx_assets->exit_t->texture);
 	if (!map->mlx_assets->exit)
-		ft_printf("texture error");
+		ft_error("texture error\n", map);
 }
 
 void	put_img(t_map *map)
@@ -78,7 +78,7 @@ void	put_img(t_map *map)
 		y = 0;
 		while (j < map->width)
 		{
-			put_img_help(x, y, i, j, map);
+			put_img_help(x, y, map->data[i][j], map);
 			y += 50;
 			j++;
 		}
@@ -111,7 +111,10 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		move_sprite_up(map, mlx, &map->steps);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		move_sprite_down(map, mlx, &map->steps);
-	ft_printf("%i\n", map->steps);
+	if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN
+			|| keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
+		&& keydata.action == MLX_PRESS)
+		ft_printf("%i\n", map->steps);
 }
 
 int	main(int argc, char **argv)
@@ -131,7 +134,7 @@ int	main(int argc, char **argv)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	map.mlx = mlx_init(map.width * 50, map.height * 50, "MLX42", true);
 	if (!map.mlx)
-		exit(EXIT_FAILURE);
+		ft_error("MLX init error\n", &map);
 	load_textures(&map);
 	make_image(&map);
 	put_img(&map);

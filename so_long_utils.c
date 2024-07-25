@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:18:31 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/24 19:55:45 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:25:42 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,16 @@ void	so_long_kill(t_map *map)
 
 void	ft_error(char *str, t_map *map)
 {
-	int	i;
-
-	if (map != NULL)
-	{
-		i = 0;
-		while (map->data[i] != NULL)
-		{
-			free(map->data[i]);
-			i++;
-		}
-		free(map->data);
-		free(map->raw_data);
-	}
+	so_long_kill(map);
 	ft_printf(str);
 	exit(1);
 }
 
-void	put_img_help(int x, int y, int i, int j, t_map *map)
+void	put_img_help(int x, int y, char c, t_map *map)
 {
-	if (i < map->height && j < map->width && map->data[i][j] == '1')
+	if (c == '1')
 		put_wall(x, y, map);
-	else if (i < map->height && j < map->width && map->data[i][j] == 'C')
+	else if (c == 'C')
 		put_coll(x, y, map);
 	else
 		put_floor(x, y, map);
