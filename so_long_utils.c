@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:18:31 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/25 14:43:26 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/08/02 17:47:07 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	so_long_kill(t_map *map)
 	}
 	free(map->data);
 	free(map->raw_data);
-
 	mlx_delete_image(map->mlx, map->mlx_assets->floor);
 	mlx_delete_image(map->mlx, map->mlx_assets->sprite);
 	mlx_delete_image(map->mlx, map->mlx_assets->wall);
