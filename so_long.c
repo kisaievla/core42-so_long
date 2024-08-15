@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/25 14:09:32 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/08/15 18:17:56 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	main(int argc, char **argv)
 	int		fd;
 	t_map	map;
 
+	write(1, "bitch\n", 7);
 	if (argc > 2)
 		ft_error("Error\nOnly one argument is allowed\n", NULL);
 	fd = open(argv[1], O_RDONLY);
