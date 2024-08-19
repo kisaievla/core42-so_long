@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/25 13:22:21 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:48:20 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		ft_printf_helper_d(int d);
 void	so_long_kill(t_map *map);
 void	ft_error(char *str, t_map *map);
 void	put_img_help(int x, int y, char c, t_map *map);
+void	ft_error_load(char *str, t_map *map);
 //so_long_moves.c
 void	collected(t_map *map, mlx_t *mlx);
 void	move_sprite_left(t_map *map, mlx_t *mlx, int *step);

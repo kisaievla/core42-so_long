@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/08/15 18:17:56 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:48:43 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	load_textures(void *param)
 	map = param;
 	map->mlx_assets->sprite_t = mlx_load_xpm42("./textures/sprite.xpm42");
 	if (!map->mlx_assets->sprite_t)
-		ft_error("sprite didn't load", map);
+		ft_error_load("sprite didn't load", map);
 	map->mlx_assets->floor_t = mlx_load_xpm42("./textures/floor.xpm42");
 	if (!map->mlx_assets->floor_t)
-		ft_error("floor didn't load", map);
+		ft_error_load("floor didn't load", map);
 	map->mlx_assets->wall_t = mlx_load_xpm42("./textures/wall.xpm42");
 	if (!map->mlx_assets->wall_t)
-		ft_error("wall didn't load\n", map);
+		ft_error_load("wall didn't load\n", map);
 	map->mlx_assets->coll_t = mlx_load_xpm42("./textures/collect.xpm42");
 	if (!map->mlx_assets->coll_t)
-		ft_error("sprite didn't load\n", map);
+		ft_error_load("collectible didn't load\n", map);
 	map->mlx_assets->exit_t = mlx_load_xpm42("./textures/exit.xpm42");
 	if (!map->mlx_assets->exit_t)
-		ft_error("sprite didn't load\n", map);
+		ft_error_load("exit didn't load\n", map);
 }
 
 void	make_image(void *param)
@@ -122,7 +122,6 @@ int	main(int argc, char **argv)
 	int		fd;
 	t_map	map;
 
-	write(1, "bitch\n", 7);
 	if (argc > 2)
 		ft_error("Error\nOnly one argument is allowed\n", NULL);
 	fd = open(argv[1], O_RDONLY);
@@ -136,6 +135,7 @@ int	main(int argc, char **argv)
 	if (!map.mlx)
 		ft_error("MLX init error\n", &map);
 	load_textures(&map);
+	write(1, "bitch\n", 7);
 	make_image(&map);
 	put_img(&map);
 	mlx_key_hook(map.mlx, &my_keyhook, &map);

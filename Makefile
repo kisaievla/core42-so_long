@@ -1,5 +1,5 @@
 NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror
+CFLAGS	:= -Wextra -Wall -Werror -g
 LIBMLX	:= ../MLX42
 OS	:= $(shell uname -o)
 
