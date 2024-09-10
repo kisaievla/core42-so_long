@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/08/22 12:21:55 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:27:42 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	put_img(t_map *map)
 	i = 0;
 	x = 0;
 	while (i < map->height)
-	{	
+	{
 		j = 0;
 		y = 0;
 		while (j < map->width)

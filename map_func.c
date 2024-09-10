@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:20:45 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/24 19:39:07 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:17:51 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,5 @@ void	map_init(t_map *map)
 	map->collectible = 0;
 	map->walls = 0;
 	map->steps = 0;
+	map->mlx_assets = malloc(sizeof(t_mlx_assets));
 }

@@ -1,11 +1,11 @@
 NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror -g
 LIBMLX	:= ../MLX42
-OS	:= $(shell uname -o)
+OS	:= $(shell uname -s)
 
 HEADERS	:= -I ./ -I $(LIBMLX)/include
 
-ifeq ($(OS),GNU/Linux)
+ifeq ($(OS), Linux)
 	LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 else
 	LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L"/opt/homebrew/Cellar/glfw/3.4/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
