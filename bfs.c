@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:23:39 by visaienk          #+#    #+#             */
-/*   Updated: 2024/07/25 13:51:42 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:39:21 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	map_validator(t_map *map)
 	rectangular_walls(map);
 	find_start_end(map);
 	find_items(map);
+	if (map->collectible == 0)
+		ft_error("Error\nCollectible is missing", map);
 	if (find_path(map) == -1)
 		ft_error("Error\nNo path found", map);
 }

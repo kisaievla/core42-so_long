@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:20:45 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/10 18:17:51 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:56:15 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ void	find_items(t_map *map)
 			else if (map->data[i][j] == 'E'
 				&& (i != map->finish_r || j != map->finish_c))
 				ft_error("Error\nDuplicate Exit postion found\n", map);
+			else if (map->data[i][j] == '0')
+				continue ;
+			else
+				ft_error("Error\nInvalid char on a map\n", map);
 			j++;
 		}
 		i++;
