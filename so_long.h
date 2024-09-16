@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/08/19 16:48:20 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/14 21:43:52 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_map
 }	t_map;
 //ft_printf.c
 int		ft_printf(char *s, ...);
+void	set_depth(t_map *map);
 //get_next_line_utils.c
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int ch);
@@ -117,6 +118,7 @@ void	so_long_kill(t_map *map);
 void	ft_error(char *str, t_map *map);
 void	put_img_help(int x, int y, char c, t_map *map);
 void	ft_error_load(char *str, t_map *map);
+void	find_forbidden_items(t_map *map);
 //so_long_moves.c
 void	collected(t_map *map, mlx_t *mlx);
 void	move_sprite_left(t_map *map, mlx_t *mlx, int *step);

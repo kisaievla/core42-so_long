@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:20:46 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/10 18:27:27 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:34:48 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	collected(t_map *map, mlx_t *mlx)
 				map->mlx_assets->sprite->instances[0].y);
 		if (inst < 0)
 			ft_error("floor error\n", map);
-		mlx_set_instance_depth(&map->mlx_assets->floor->instances[inst], 208);
 	}
 }
 

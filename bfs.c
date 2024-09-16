@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:23:39 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/11 16:39:21 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/13 22:58:16 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	find_path(t_map *map)
 void	map_validator(t_map *map)
 {
 	rectangular_walls(map);
+	find_forbidden_items(map);
 	find_start_end(map);
 	find_items(map);
 	if (map->collectible == 0)

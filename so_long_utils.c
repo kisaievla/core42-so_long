@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:18:31 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/10 18:19:41 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:36:29 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,3 +85,28 @@ void	put_img_help(int x, int y, char c, t_map *map)
 	else
 		put_floor(x, y, map);
 }
+
+void	find_forbidden_items(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < map->height - 1)
+	{
+		j = 1;
+		while (j < map->width - 1)
+		{
+			if (map->data[i][j] == 'C' ||
+				map->data[i][j] == 'P' ||
+				map->data[i][j] == '0' ||
+				map->data[i][j] == '1' ||
+				map->data[i][j] == 'E')
+				j++;
+			else
+				ft_error("Error\nFound a forbidden item\n", map);
+		}
+		i++;
+	}
+}
+

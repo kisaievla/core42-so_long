@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/11 16:39:47 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:41:38 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	put_img(t_map *map)
 		i++;
 	}
 	put_sprite(map);
+	//set_depth(map);
 }
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
@@ -95,7 +96,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 	map = param;
 	mlx = map->mlx;
-	mlx_set_instance_depth(&map->mlx_assets->sprite->instances[0], 209);
 	if (map->collectible == 0)
 		put_exit(map);
 	if ((map->data[map->start_r][map->start_c] == 'E' && map->collectible == 0)
@@ -138,6 +138,8 @@ int	main(int argc, char **argv)
 	load_textures(&map);
 	make_image(&map);
 	put_img(&map);
+	set_depth(&map);
+	write(1, "bitch\n", 7);
 	mlx_key_hook(map.mlx, &my_keyhook, &map);
 	mlx_loop(map.mlx);
 	so_long_kill(&map);
