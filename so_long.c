@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/16 12:41:38 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/16 17:11:43 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 
 	map = param;
 	mlx = map->mlx;
-	if (map->collectible == 0)
+	if (map->collectible <= 0)
 		put_exit(map);
-	if ((map->data[map->start_r][map->start_c] == 'E' && map->collectible == 0)
+	if ((map->data[map->start_r][map->start_c] == 'E' && map->collectible <= 0)
 		|| mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(mlx);
@@ -138,8 +138,7 @@ int	main(int argc, char **argv)
 	load_textures(&map);
 	make_image(&map);
 	put_img(&map);
-	set_depth(&map);
-	write(1, "bitch\n", 7);
+	//set_depth(&map);
 	mlx_key_hook(map.mlx, &my_keyhook, &map);
 	mlx_loop(map.mlx);
 	so_long_kill(&map);
