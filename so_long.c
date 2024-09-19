@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/16 17:11:43 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:01:14 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	put_img(t_map *map)
 		i++;
 	}
 	put_sprite(map);
-	//set_depth(map);
 }
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
@@ -138,7 +137,6 @@ int	main(int argc, char **argv)
 	load_textures(&map);
 	make_image(&map);
 	put_img(&map);
-	//set_depth(&map);
 	mlx_key_hook(map.mlx, &my_keyhook, &map);
 	mlx_loop(map.mlx);
 	so_long_kill(&map);

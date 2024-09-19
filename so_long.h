@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/14 21:43:52 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:02:32 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_map
 }	t_map;
 //ft_printf.c
 int		ft_printf(char *s, ...);
-void	set_depth(t_map *map);
 //get_next_line_utils.c
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *str, int ch);

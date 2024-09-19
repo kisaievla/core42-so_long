@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:18:31 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/14 17:36:29 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/19 23:03:07 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,3 @@ void	find_forbidden_items(t_map *map)
 		i++;
 	}
 }
-
