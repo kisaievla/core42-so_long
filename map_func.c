@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 18:20:45 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/13 21:45:04 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:25:49 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	rectangular_walls(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (map->data[i][0] != '1' || map->data[i][map->width - 1] != '1')
+		if ((map->data[i][0] != '1' || map->data[i][map->width - 1] != '1')
+				&& (int)ft_strlen(map->data[i]) != map->width)
 			ft_error("Error\nThe map is not rectangular\n", map);
 		i++;
 	}
