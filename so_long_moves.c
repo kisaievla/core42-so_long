@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:20:46 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/19 22:59:45 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:56:35 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	move_sprite_left(t_map *map, mlx_t *mlx, int *step)
 			-= map->mlx_assets->sprite->height;
 		map->start_r--;
 		collected(map, mlx);
+		*step += 1;
+		ft_printf("%i\n", map->steps);
 	}
-	*step += 1;
 }
 
 void	move_sprite_right(t_map *map, mlx_t *mlx, int *step)
@@ -50,8 +51,9 @@ void	move_sprite_right(t_map *map, mlx_t *mlx, int *step)
 			+= map->mlx_assets->sprite->height;
 		map->start_r++;
 		collected(map, mlx);
+		*step += 1;
+		ft_printf("%i\n", map->steps);
 	}
-	*step += 1;
 }
 
 void	move_sprite_up(t_map *map, mlx_t *mlx, int *step)
@@ -62,8 +64,9 @@ void	move_sprite_up(t_map *map, mlx_t *mlx, int *step)
 			-= map->mlx_assets->sprite->width;
 		map->start_c--;
 		collected(map, mlx);
-	}
-	*step += 1;
+		*step += 1;
+		ft_printf("%i\n", map->steps);
+	};
 }
 
 void	move_sprite_down(t_map *map, mlx_t *mlx, int *step)
@@ -74,6 +77,7 @@ void	move_sprite_down(t_map *map, mlx_t *mlx, int *step)
 			+= map->mlx_assets->sprite->width;
 		map->start_c++;
 		collected(map, mlx);
+		*step += 1;
+		ft_printf("%i\n", map->steps);
 	}
-	*step += 1;
 }

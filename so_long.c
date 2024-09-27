@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:14:14 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/19 23:01:14 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:57:29 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		move_sprite_up(map, mlx, &map->steps);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		move_sprite_down(map, mlx, &map->steps);
-	if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_DOWN
-			|| keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
-		&& keydata.action == MLX_PRESS)
-		ft_printf("%i\n", map->steps);
 }
 
 int	main(int argc, char **argv)
