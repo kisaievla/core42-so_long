@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:20:46 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/27 16:56:35 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:58:23 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	move_sprite_up(t_map *map, mlx_t *mlx, int *step)
 		collected(map, mlx);
 		*step += 1;
 		ft_printf("%i\n", map->steps);
-	};
+	}
 }
 
 void	move_sprite_down(t_map *map, mlx_t *mlx, int *step)
