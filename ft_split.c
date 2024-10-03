@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_spit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: visaienk <visaienk@student.42prague.com>   +#+  +:+       +#+        */
+/*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:10:24 by visaienk          #+#    #+#             */
-/*   Updated: 2024/06/24 17:11:03 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:20:40 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

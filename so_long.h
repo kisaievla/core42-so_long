@@ -6,7 +6,7 @@
 /*   By: visaienk <visaienk@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 12:21:34 by visaienk          #+#    #+#             */
-/*   Updated: 2024/09/19 23:02:32 by visaienk         ###   ########.fr       */
+/*   Updated: 2024/10/03 14:04:52 by visaienk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h> // delete
 # include <fcntl.h>
 # include <memory.h>
 # include <stdbool.h>
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "./lib/MLX42/include/MLX42/MLX42.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
